@@ -1,0 +1,46 @@
+Queries:
+
+Crear Bases de datos:
+
+
+Create Database NOMBREDATABASE;
+
+Seleccionar la base de datos a usar:
+
+USE NOMBREDATABASE;
+
+
+EL GO EN LOS Queries
+permite que la base de datos respire mientras se ejecuta hace que el codigo se ejecute en bloques
+
+
+Crear tabla:
+
+CREATE TABLE Cliente (
+IDCliente INT IDENTITY(1,1) PRIMARY KEY,
+Nombre VARCHAR(30) NOT NULL,
+Apellido1 VARCHAR(30) NOT NULL,
+Apellido2 VARCHAR (30) NOT NULL,
+Telefono VARCHAR(30) NOT NULL,
+Correo VARCHAR(30) NOT NULL UNIQUE
+);
+
+
+Crear tabla intermedia:
+
+CREATE TABLE Ventas(
+IDVenta INT IDENTITY (1,1) PRIMARY KEY NOT NULL,
+FK_IDCliente INT NOT NULL,
+FK_IDProducto INT NOT NULL,
+FechaTransaccion DATETIME DEFAULT GETDATE() NOT NULL, 
+FOREIGN KEY (FK_IDCliente) REFERENCES Cliente(IDCliente),
+FOREIGN KEY (FK_IDProducto) REFERENCES Productos(IDProducto)
+
+
+)
+
+Insertar datos a tabla:
+
+INSERT INTO cliente (Nombre, Apellido1, Apellido2, Telefono, Correo) VALUES
+('Juan', 'Pérez', 'García', '555-1234', 'juan.perez@example.com'),
+('María', 'Rodríguez', 'López', '555-5678', 'maria.rodriguez@example.com')
